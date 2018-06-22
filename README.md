@@ -119,9 +119,9 @@ APNs推送：
 
 ```objc
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-	......
+    ......
 	
-	[[IStationSDK sharedSDK] registerAppKey:appKey appName:App名称];
+    [[IStationSDK sharedSDK] registerAppKey:appKey appName:App名称];
     
     ......
     
@@ -361,29 +361,29 @@ imageView.contentMode = UIViewContentModeScaleToFill;
 
 ```objc
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-	......
+    ......
 	
-	//传入正确的App名称
-   [[IStationSDK sharedSDK] registerAppKey:appKey appName:App名称];
+    //传入正确的App名称
+    [[IStationSDK sharedSDK] registerAppKey:appKey appName:App名称];
     
-	//注册APNs推送
-	if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0) {
-		 [UNUserNotificationCenter currentNotificationCenter].delegate = self;
-	    [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:(UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert) completionHandler:^(BOOL granted, NSError * _Nullable error) {
+    //注册APNs推送
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0) {
+        [UNUserNotificationCenter currentNotificationCenter].delegate = self;
+        [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:(UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert) completionHandler:^(BOOL granted, NSError * _Nullable error) {
 	        if (!error) {
 	            NSLog(@"request authorization succeeded!");
 	        }
 	    }];
-	    [[UIApplication sharedApplication] registerForRemoteNotifications];
-	} else {
-	    //小于 iOS 10.0
-	    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
-	    [application registerUserNotificationSettings:settings];
-	    [[UIApplication sharedApplication] registerForRemoteNotifications];
-	}
-	
-	......
-	
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    } else {
+        //小于 iOS 10.0
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
+        [application registerUserNotificationSettings:settings];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }
+
+    ......
+
     return YES;
 }
 ```
@@ -392,8 +392,8 @@ imageView.contentMode = UIViewContentModeScaleToFill;
 
 ```objc
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-	......
-	
+    ......
+
     [[IStationSDK sharedSDK] updateApnsToken:deviceToken];
     
     ......
