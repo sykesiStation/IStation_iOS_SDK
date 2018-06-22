@@ -3,8 +3,8 @@
 
 iStation iOS SDK 是客服系统访客端的解决方案，既包含了客服聊天逻辑管理，也提供了聊天界面，开发者可方便的将客服功能集成到自己的 APP 中。iOS SDK 支持 iOS 8 以上版本，同时支持iPhone、iPad以及横竖屏UI。在iOS 9.2 以上版本中支持 IPv6，能正常通过苹果审核。
 
-[![Cocoapods Platform](https://img.shields.io/cocoapods/v/IStation_iOS_SDK.svg?style=flat)](http://cocoadocs.org/docsets/IStation_iOS_SDK/)
-[![Cocoapods Version](https://img.shields.io/cocoapods/p/IStation_iOS_SDK.svg?style=flat)](http://cocoadocs.org/docsets/IStation_iOS_SDK/)
+[![Cocoapods Platform](https://img.shields.io/cocoapods/v/IStation_iOS_SDK.svg?style=flat)](http://cocoapods.org/pods/IStation_iOS_SDK)
+#### [![Cocoapods Version](https://img.shields.io/cocoapods/p/IStation_iOS_SDK.svg?style=flat)](http://cocoapods.org/pods/IStation_iOS_SDK)
 
 ## SDK 目录讲解
  下载完 iStation SDK，得到如下两部分：
@@ -12,7 +12,7 @@ iStation iOS SDK 是客服系统访客端的解决方案，既包含了客服聊
  * IStationSDK.framework：静态库Framework,包含静态库文件和SDK的头文件
  * IStationResource.bundle：SDK的资源文件包
  
- >由于 SDK 是静态库，且为了方便开发者使用，我们将 i386、x86_64、armv7、arm64 平台的静态库合并成一个 Fat Library ，导致整个 SDK 比较大。但实际编译后大约只会增加 app 2-3M 大小
+ >由于 SDK 是静态库，且为了方便开发者使用，我们将 i386、x86_64、armv7、arm64 平台的静态库合并成一个 Fat Library ，导致整个 SDK 比较大。但实际编译后大约只会增加 app 1-2M 大小
 
 ## 系统要求以及依赖第三方框架
 * 系统要求  
@@ -52,7 +52,7 @@ end
 	* UserNotifications.framework
 	* libstdc++.6.0.9.tbd
 
-* 添加第三方库：在Podfile中添加Socket.IO的依赖， pod 'Socket.IO-Client-Swift', '~> 13.1.2'
+* 添加第三方库：在Podfile中添加Socket.IO的依赖， pod 'Socket.IO-Client-Swift', '~> 13.2.1'
 
 * 在 Build Settings -> Other Linker Flags 中添加 -ObjC 
 
@@ -137,21 +137,21 @@ appKey 可以通过公司管理员账号登录 “iStation Web端” -> “配�
 设置个人信息，用户帐号登录成功之后，调用设置用户信息函数（userID必填，建议同时设置用户昵称（userName））。如果不设置用户信息，则使用匿名用户的方式进行客服咨询。应该在进入聊天咨询界面之前设置用户信息。
 
 ```objc
-	IStationUserVo *userVo = [[IStationUserVo alloc]init];
-	userVo.userID = @"45471429666";      //用户标识,必填
-	userVo.userName = @"iOS_SDK_用户1";   //用户昵称
-	userVo.headerImageURL = @"http://visionet.findest.com/letsdesk/assets/img/logo-1.png";  //用户头像
+    IStationUserVo *userVo = [[IStationUserVo alloc]init];
+    userVo.userID = @"45471429666";      //用户标识,必填 
+    userVo.userName = @"iOS_SDK_用户1";   //用户昵称 
+    userVo.headerImageURL = @"http://visionet.findest.com/letsdesk/assets/img/logo-1.png";  //用户头像
     userVo.gender = 1;  //性别,1：男、2：女
     userVo.phoneNumber = @"18611111111";  //手机
     userVo.telephone = @"021-12345678";  //固定电话
     userVo.email = @"71232131@qq.com";  //邮箱
-    
+
     userVo.address = @"上海市长宁区";  //地址
     userVo.position = @"人事经理";  //职位
     userVo.department = @"人事部";  //单位
     userVo.birthday = @"1988-12-12";  //生日(yyyy-MM-dd)
     userVo.remark = @"备注SDK";  //备注
-	[[IStationSDK sharedSDK] setUserInfo:userVo];
+    [[IStationSDK sharedSDK] setUserInfo:userVo];
 
 ```
 
@@ -256,7 +256,7 @@ IStationUIConfig是负责自定义UI的类；目前主要是定义聊天界面�
 IStationUIConfig 只是负责替换部分皮肤相关内容，不包含所有的图片素材的替换,调整UI样例代码：
 
 ```objc
-	/**
+    /**
 	 *  访客文本消息字体颜色
 	 */
     [[IStationSDK sharedSDK] customUIConfig].customMessageTextColor = [UIColor blackColor];
@@ -269,46 +269,46 @@ IStationUIConfig 只是负责替换部分皮肤相关内容，不包含所有的
     /**
 	 *  客户文本消息内嵌链接字体颜色
 	 */
-	[[IStationSDK sharedSDK] customUIConfig].customMessageLinkTextColor = [UIColor colorWithRed:128.0/255.0 green:233.0/255.0 blue:255.0/255.0 alpha:1.0];
+    [[IStationSDK sharedSDK] customUIConfig].customMessageLinkTextColor = [UIColor colorWithRed:128.0/255.0 green:233.0/255.0 blue:255.0/255.0 alpha:1.0];
 	
-	/**
+    /**
 	 *  客服文本消息内嵌链接字体颜色
 	 */
-	[[IStationSDK sharedSDK] customUIConfig].serviceMessageLinkTextColor = [UIColor colorWithRed:0.0/255.0 green:165.0/255.0 blue:224.0/255.0 alpha:1.0];
+    [[IStationSDK sharedSDK] customUIConfig].serviceMessageLinkTextColor = [UIColor colorWithRed:0.0/255.0 green:165.0/255.0 blue:224.0/255.0 alpha:1.0];
     
     /**
  	 *  提示文本消息字体颜色
  	 */
-	[[IStationSDK sharedSDK] customUIConfig].tipMessageTextColor = [UIColor grayColor];
+    [[IStationSDK sharedSDK] customUIConfig].tipMessageTextColor = [UIColor grayColor];
 
-	/**
+    /**
 	 *  提示文本消息背景颜色
 	 */
-	[[IStationSDK sharedSDK] customUIConfig].tipMessageBackgroundColor = [UIColor whiteColor];
+    [[IStationSDK sharedSDK] customUIConfig].tipMessageBackgroundColor = [UIColor whiteColor];
     
     /**
 	 *  输入框文本消息字体颜色
 	 */
-	[[IStationSDK sharedSDK] customUIConfig].inputTextColor = [UIColor blackColor];
+    [[IStationSDK sharedSDK] customUIConfig].inputTextColor = [UIColor blackColor];
 
-	/**
+    /**
 	 *  消息时间颜色
 	 */
-	[[IStationSDK sharedSDK] customUIConfig].messageTimeColor = [UIColor grayColor];
+    [[IStationSDK sharedSDK] customUIConfig].messageTimeColor = [UIColor grayColor];
 
-	/**
+    /**
 	 *  消息tableview的背景图片
 	 */
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"chat_bg"]];
     imageView.contentMode = UIViewContentModeScaleToFill;
     [[IStationSDK sharedSDK] customUIConfig].chatBackground = imageView;
     
-   /**
+    /**
  	 *  客户头像URL,优先使用URL加载图片
  	 */
     [[IStationSDK sharedSDK] customUIConfig].customerHeadURL = [NSURL URLWithString:@"http://visionet.findest.com/letsdesk/assets/img/logo-1.png"];
     
-	/**
+    /**
 	 *  客户头像
 	 */
     [[IStationSDK sharedSDK] customUIConfig].customerHeadImage = [UIImage imageNamed:@"customer_avatar"];
@@ -329,7 +329,7 @@ IStationUIConfig 只是负责替换部分皮肤相关内容，不包含所有的
                                   resizableImageWithCapInsets:UIEdgeInsetsMake(26,26,26,26)
                                   resizingMode:UIImageResizingModeStretch];
                                   
-	/**
+    /**
 	 *  客服消息气泡normal图片
 	 */
     [[IStationSDK sharedSDK] customUIConfig].serviceMessageBubbleNormalImage = 
@@ -345,7 +345,7 @@ IStationUIConfig 只是负责替换部分皮肤相关内容，不包含所有的
                                   resizableImageWithCapInsets:UIEdgeInsetsMake(26,26,26,26)
                                   resizingMode:UIImageResizingModeStretch];
     
-	/**
+    /**
 	 *  默认是YES,默认进入聊天界面，是文本输入模式的话，会弹出键盘，设置为NO，可以修改为不弹出
 	 */
     [IStationUIConfig sharedInstance].isShowKeyboard = YES;
@@ -443,7 +443,7 @@ IStationUIConfig 只是负责替换部分皮肤相关内容，不包含所有的
 ### 注销
 
 ```objc
-	[[IStationSDK sharedSDK] logout:^{
+    [[IStationSDK sharedSDK] logout:^{
         NSLog(@"注销成功！");
     }];
 ```
