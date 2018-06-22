@@ -1,0 +1,6 @@
+framework module IStationSDK {
+  umbrella header "IStationSDK.h"
+
+  export *
+  module * { export * }
+}
