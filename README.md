@@ -58,16 +58,6 @@ end
 
 ### 配置工程
 
-*  允许App支持Http传输方法，由于SDK与服务器之间有部分请求使用的是http。在Info.plist中加入以下内容：
-
-```
-<key>NSAppTransportSecurity</key>
-<dict>
-	<key>NSAllowsArbitraryLoads</key>
-	<true/>
-</dict>
-```
-
 * iOS10 权限设置,在Info.plist中加入以下内容：  
 
 ```
@@ -149,9 +139,22 @@ userVo.position = @"人事经理";  //职位
 userVo.department = @"人事部";  //单位
 userVo.birthday = @"1988-12-12";  //生日(yyyy-MM-dd)
 userVo.remark = @"备注SDK";  //备注
+
+// 传递自定义客户信息
+userVo.customData = @"[{\"label_cn\":\"订单号\", \"label_en\":\"orderNo\", \"value\":\"1111111\"},"
+                      "{\"label_cn\":\"员工号\", \"label_en\":\"empNo\", \"value\":\"2222222\"}]";
+
 [[IStationSDK sharedSDK] setUserInfo:userVo];
 
 ```
+
+#####自定义客户信息使用注意：  
+| 字段 | 类型 | 说明 | 
+|---|---|---|
+| label_cn | String | 该项数据显示的中文名称  |
+| label_en | String | 该项数据显示的英文名称  |
+| value | String | 该数据显示的值，类型不做限定，根据实际需要进行设定 |
+  
 
 ### 集成客户聊天组件
 
@@ -240,6 +243,41 @@ chatViewController.linkClickBlock = ^(NSString *urlString) {
 };
 
 ```
+### 集成热点引导问题
+在IStationChatViewController控制器中设置需要显示的热点引导问题ID，热点引导问题ID获取参考：[如何获取热点引导问题ID](https://github.com/sykesiStation/IStation_iOS_SDK/wiki/如何获取常见问题ID "target=_blank")     
+
+```objc
+
+@interface IStationChatViewController : UIViewController
+
+...
+
+/**
+ *  热点引导问题ID
+ */
+@property (nonatomic, strong) NSString *faqId;
+
+...
+
+@end
+
+```
+
+参考代码：  
+
+```objc
+//启动聊天界面
+IStationChatViewController *chatViewController = [[IStationSDK sharedSDK] chatViewController];
+chatViewController.chatTitle = @"iStation SDK测试";
+chatViewController.faqId = @"27";  //跳转时指定热点引导问题ID
+chatViewController.hidesBottomBarWhenPushed = YES;
+[self.navigationController pushViewController: chatViewController animated:YES];
+
+```
+
+效果图如下： 
+
+![IStation_iOS_SDK](https://raw.githubusercontent.com/sykesiStation/Resource/master/image/faq3_small.png)
 
 ### 自定义客户端聊天组件UI效果
 
@@ -345,6 +383,17 @@ imageView.contentMode = UIViewContentModeScaleToFill;
  *  默认是YES,默认进入聊天界面，是文本输入模式的话，会弹出键盘，设置为NO，可以修改为不弹出
  */
 [IStationUIConfig sharedInstance].isShowKeyboard = YES;
+
+/**
+ *  常见问题简介字体颜色
+ */
+[[IStationSDK sharedSDK] customUIConfig].faqDescriptionTextColor = [UIColor blackColor];
+    
+/**
+ *  常见问题项字体颜色
+ */
+[[IStationSDK sharedSDK] customUIConfig].faqItemTextColor = [UIColor colorWithRed:35.0/255.0 green:150.0/255.0 blue:255.0/255.0 alpha:1.0];
+
 ```
 
 ### APNs推送
