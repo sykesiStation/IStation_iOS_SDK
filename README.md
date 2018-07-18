@@ -244,7 +244,7 @@ chatViewController.linkClickBlock = ^(NSString *urlString) {
 
 ```
 ### 集成热点引导问题
-在IStationChatViewController控制器中设置需要显示的热点引导问题ID，热点引导问题ID获取参考：[如何获取热点引导问题ID](https://github.com/sykesiStation/IStation_iOS_SDK/wiki/如何获取常见问题ID "target=_blank")     
+在IStationChatViewController控制器中设置需要显示的热点引导问题ID，热点引导问题ID获取参考：[如何获取热点引导问题ID](https://github.com/sykesiStation/IStation_iOS_SDK/wiki/%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E7%83%AD%E7%82%B9%E5%BC%95%E5%AF%BC%E9%97%AE%E9%A2%98ID "target=_blank")     
 
 ```objc
 
