@@ -98,4 +98,14 @@
  */
 @property (nonatomic, assign) BOOL isShowKeyboard;
 
+/**
+ *  常见问题简介字体颜色
+ */
+@property (nonatomic, strong) UIColor *faqDescriptionTextColor;
+
+/**
+ *  常见问题项字体颜色
+ */
+@property (nonatomic, strong) UIColor *faqItemTextColor;
+
 @end

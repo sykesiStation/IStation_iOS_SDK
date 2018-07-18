@@ -36,6 +36,11 @@ typedef BOOL (^IStationLinkClickBlock)(NSString *linkAddress);
 @property (nonatomic, strong) IStationCommodityVo *commodityVo;
 
 /**
+ *  热点引导问题ID
+ */
+@property (nonatomic, strong) NSString *faqId;
+
+/**
  *  监控SDK内消息跳转行为的block
  *
  *  @return 是否执行SDK默认的跳转行为

@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "IStation_iOS_SDK"
-  s.version      = "1.0.1"
+  s.version      = "1.0.2"
   s.license      = { :"type" => "Copyright", :"text" => " Copyright 2018 Sykes \n"}
   s.homepage     = "http://onesykes.com/"
   s.author       = { 'sunyan' => 'yansun2006@126.com' }
